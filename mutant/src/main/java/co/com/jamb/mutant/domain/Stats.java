@@ -8,9 +8,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class Stats {
 
-    @JsonProperty("“count_mutant_dna")
-    private long countMutantAdn;
-    @JsonProperty("“count_human_dna")
-    private long countHumanoAdn;
+    @JsonProperty("count_mutant_dna")
+    private Long countMutantAdn;
+    @JsonProperty("count_human_dna")
+    private Long countHumanoAdn;
+    @JsonProperty("ratio")
     private Double ratio;
 }

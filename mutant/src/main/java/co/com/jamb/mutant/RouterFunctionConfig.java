@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
@@ -20,6 +21,6 @@ public class RouterFunctionConfig {
     public RouterFunction<ServerResponse> routes(MutanteHandler handler){
         return route(GET("/api/mutantes"),handler::listar)
                 .andRoute(GET("/api/stats"),handler::stats)
-                .andRoute(GET("/api/mutant"),handler::ismutant);
+                .andRoute(POST("/api/mutant"),handler::ismutant);
     }
 }

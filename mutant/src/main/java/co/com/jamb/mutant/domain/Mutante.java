@@ -1,5 +1,6 @@
 package co.com.jamb.mutant.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -13,14 +14,14 @@ public class Mutante {
     @Id
     private String id;
     @Pattern(regexp = "[ATCG]")
-    private String adn;
+    @JsonProperty("adn")
+    private String[] adn;
+    @JsonProperty("mutant")
     private boolean mutant;
-    @Transient
-    private int totalMutant=0;
-    @Transient
-    private int totalHumanos=0;
-    public Mutante(String adn) {
+    public Mutante(String[] adn) {
         this.adn = adn;
     }
+    public Mutante() {
 
+    }
 }

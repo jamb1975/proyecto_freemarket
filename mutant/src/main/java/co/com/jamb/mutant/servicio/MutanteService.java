@@ -8,5 +8,6 @@ import reactor.core.publisher.Mono;
 public interface MutanteService {
      public Flux<Mutante> findAll();
      public Mono<Stats> stats();
-     public Mono<Mutante> mutant(Mutante mutante);
+     public Mono<Mutante> ismutant(Mutante mutante);
+
 }

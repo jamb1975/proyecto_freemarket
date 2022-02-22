@@ -5,7 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple3;
+
+import java.util.List;
 
 @Repository
 public class MutanteRepoImpl implements MutanteRepo{
@@ -18,21 +21,6 @@ public class MutanteRepoImpl implements MutanteRepo{
         return mutanteDAO.findAll();
     }
 
-    @Override
-    public Mono<Tuple3<Long, Long, Double>> stats() {
-      return Mono.zip(mutanteDAO.findAll().filter(m-> m.isMutant()).count(),
-                      mutanteDAO.findAll().filter(m-> !m.isMutant()).count(),
-                      mutanteDAO.findAll().filter(m-> !m.isMutant()).count().map(m->{
-                        return  mutanteDAO.findAll().filter(h-> h.isMutant()).count().map(h-> Double.valueOf(m/h)).block();
-                      }));
-
-
-    }
-
-    @Override
-    public Mono<Mutante> findById(String id) {
-        return null;
-    }
 
     @Override
     public Mono<Mutante> save(Mutante mutante) {
@@ -43,4 +31,15 @@ public class MutanteRepoImpl implements MutanteRepo{
     public Mono<Void> delete(Mutante mutante) {
         return mutanteDAO.delete(mutante);
     }
+
+    @Override
+    public Flux<Mutante> findByAdn(String[] adn) {
+        return  mutanteDAO.findByAdn(adn);
+    }
+
+    @Override
+    public Mono<Long> findAllMutant(boolean mutant) {
+        return mutanteDAO.findAllMutant(mutant);
+    }
+
 }
