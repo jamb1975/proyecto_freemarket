@@ -10,9 +10,11 @@ import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 import reactor.util.function.Tuple2;
 
 import java.util.Locale;
+import java.util.function.LongConsumer;
 
 @Service
 @Log4j2
@@ -32,7 +34,7 @@ public class MutanteServiceImpl implements MutanteService {
     }
 
     public Mono<Mutante> ismutant(Mutante mutante){
-        return Mono.just(mutante).flatMap(m->{
+        return Mono.just(mutante).subscribeOn(Schedulers.boundedElastic()).flatMap(m->{
 
             //Definimos Array de Strings posxy de cda lettra(POS 0 = A, POS 1=T POS 2 =C POS 3 =G
             String [] letrasAdn= {"A", "T", "C", "G"};
