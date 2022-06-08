@@ -21,6 +21,7 @@ public class RouterFunctionConfig {
     public RouterFunction<ServerResponse> routes(MutanteHandler handler){
         return route(GET("/api/mutantes"),handler::listar)
                 .andRoute(GET("/api/stats"),handler::stats)
+
                 .andRoute(POST("/api/mutant"),handler::ismutant);
     }
 }

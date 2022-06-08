@@ -22,13 +22,14 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 @Component
-public class MutanteHandler {
+public class
+MutanteHandler {
 
     @Autowired
     private MutanteService mutanteService;
 
     @Autowired
-    private Validator validator;
+    private Validator validator; nm 
     @Autowired
     private MutanteRepo mutanteRepo;
     public Mono<ServerResponse> listar(ServerRequest request){

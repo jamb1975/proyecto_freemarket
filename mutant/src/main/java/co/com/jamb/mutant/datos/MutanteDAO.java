@@ -15,6 +15,6 @@ public interface MutanteDAO extends ReactiveMongoRepository<Mutante, String> {
     @Query(value = "{mutant : ?0}", count = true)
     Mono<Long> findAllMutant(boolean mutant );
 
-
+      
 
 }
